@@ -8,21 +8,18 @@ public class Main {
 
         while (true) {
             Person s = personQueue.pollFirst();
-
             if (s == null) {
                 System.out.println("Программа завершена!");
                 break;
-            } else if (s.ticket > 0) {
-                s.minusTicket();
-                System.out.println(s.name + s.surname + "прокатился на атракционе!");
-                if (s.ticket > 0) {
-                    personQueue.addLast(s);
-                } else {
-                    personQueue.remove(s);
-                }
+            }
+            if (s.minusTicket(s)) {
+                personQueue.addLast(s);
+            } else {
+                personQueue.remove(s);
             }
         }
     }
+
 
     public static List<Person> generateClients() {
         List<Person> clients = new ArrayList<>();
